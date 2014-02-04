@@ -221,8 +221,6 @@ begin
       ProveedorTimbrado := TPACEcodex.Create(_URL_ECODEX_PRUEBAS);
       //ProveedorTimbrado := TPACComercioDigital.Create; // Si queremos usar a Comercio Digital solo des-comentamos aqui
 
-      Writeln(Factura.TotalEnLetras);
-
       try
         CredencialesPAC.RFC   := Emisor.RFC;
         CredencialesPAC.Clave := 'PWD';
