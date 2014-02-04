@@ -123,6 +123,7 @@ type
     procedure EstablecerVersionDelComprobante;
     function GetCadenaOriginalTimbre: TStringCadenaOriginal;
     function GetTimbre: TFETimbre;
+    function GetTotalEnLetras: string;
     procedure LeerImpuestosLocales;
     procedure LeerVersionDeComprobanteLeido(const aDocumentoXML: WideString);
     function ObtenerFechaHoraDeGeneracionActual: TDateTime;
@@ -167,6 +168,7 @@ type
     property AutoAsignarFechaGeneracion : Boolean read fAutoAsignarFechaGeneracion write fAutoAsignarFechaGeneracion default true;
     property CadenaOriginalTimbre: TStringCadenaOriginal read GetCadenaOriginalTimbre;
     property Timbre: TFETimbre read GetTimbre;
+    property TotalEnLetras: string read GetTotalEnLetras;
     property ValidarCertificadoYLlavePrivada: Boolean read FValidarCertificadoYLlavePrivada write FValidarCertificadoYLlavePrivada
         default true;
     property VerificarRFCDelCertificado: Boolean read FVerificarRFCDelCertificado
@@ -1257,6 +1259,11 @@ begin
     Result := fTimbre
   else
     raise EComprobanteNoSoportaPropiedadException.Create('La version de este CFD no soporta timbrado');
+end;
+
+function TFEComprobanteFiscal.GetTotalEnLetras: string;
+begin
+  Result := TFEReglamentacion.ComoLetras(inherited Total);
 end;
 
 // Permite establecer el XML del comprobante (por si se esta leyendo de la BD, etc)
